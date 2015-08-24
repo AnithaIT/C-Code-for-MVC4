@@ -1,2 +1,22 @@
 # C-Code-for-MVC4
-Mini Project
+public ActionResult Create()
+{
+    return View();
+}
+
+[HttpPost]
+public ActionResult Create(Movie newMovie)
+{
+
+    if (ModelState.IsValid)
+    {
+        db.AddToMovies(newMovie);
+        db.SaveChanges();
+
+        return RedirectToAction("Index");
+    }
+    else
+    {
+        return View(newMovie);
+    }
+}
